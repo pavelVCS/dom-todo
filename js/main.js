@@ -1,4 +1,4 @@
-const tasks = ['Buy milk', 'Eat dinner', 'Study JS'];
+import { createNewTask, printAllTasks } from './createTask.js';
 
 document.getElementById('createButton').addEventListener('click', () => {
   createNewTask();
@@ -11,46 +11,5 @@ document.getElementById('newTaskInput').addEventListener('keyup', (event) => {
     printAllTasks();
   }
 });
-
-function printAllTasks() {
-  document.getElementById('tasksList').innerHTML = '';
-
-  tasks.forEach((task, ind) => {
-    printSingleTask(task, ind);
-  });
-}
-
-function printSingleTask(task, ind) {
-  const taskLi = document.createElement('li');
-  const deleteButton = document.createElement('button');
-
-  taskLi.textContent = task;
-  deleteButton.textContent = 'Delete';
-
-  // add styles
-  taskLi.classList.add('task');
-  deleteButton.style.marginLeft = '10px';
-
-  deleteButton.addEventListener('click', () => {
-    tasks.splice(ind, 1);
-    printAllTasks();
-  });
-
-  taskLi.appendChild(deleteButton);
-  document.getElementById('tasksList').appendChild(taskLi);
-}
-
-function createNewTask() {
-  const newTask = document.getElementById('newTaskInput').value;
-
-  if (!newTask.trim().length) {
-    alert('Please enter a task');
-    document.getElementById('newTaskInput').value = '';
-    return;
-  }
-
-  tasks.push(newTask);
-  document.getElementById('newTaskInput').value = '';
-}
 
 printAllTasks();
