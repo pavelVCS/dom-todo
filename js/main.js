@@ -1,4 +1,4 @@
-const tasks = [];
+const tasks = ['Buy milk', 'Eat dinner', 'Study JS'];
 
 document.getElementById('createButton').addEventListener('click', () => {
   createNewTask();
@@ -27,6 +27,8 @@ function printSingleTask(task, ind) {
   taskLi.textContent = task;
   deleteButton.textContent = 'Delete';
 
+  // add styles
+  taskLi.classList.add('task');
   deleteButton.style.marginLeft = '10px';
 
   deleteButton.addEventListener('click', () => {
