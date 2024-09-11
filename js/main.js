@@ -1,4 +1,4 @@
-import { createNewTask, printAllTasks } from './createTask.js';
+import { createNewTask, printAllTasks } from './taskFunctions.js';
 
 document.getElementById('createButton').addEventListener('click', () => {
   createNewTask();
