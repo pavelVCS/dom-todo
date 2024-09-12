@@ -5,7 +5,7 @@ function printSingleTask(task, ind, tasks, printAllTasks) {
   const stopButton = document.createElement('button');
   const deleteButton = document.createElement('button');
 
-  taskLi.textContent = task;
+  taskLi.textContent = task.title;
   startButton.textContent = 'Start';
   stopButton.textContent = 'Stop';
   deleteButton.textContent = 'Delete';
@@ -19,13 +19,13 @@ function printSingleTask(task, ind, tasks, printAllTasks) {
   });
 
   stopButton.addEventListener('click', () => {
-    console.log('stop');
+    handleStop();
   });
 
-  deleteButton.addEventListener('click', () => {
-    tasks.splice(ind, 1);
-    printAllTasks();
-  });
+  // deleteButton.addEventListener('click', () => {
+  //   tasks.splice(ind, 1);
+  //   printAllTasks();
+  // });
 
   //   taskLi.appendChild(deleteButton);
   buttonsContainer.appendChild(startButton);
@@ -36,6 +36,10 @@ function printSingleTask(task, ind, tasks, printAllTasks) {
 
 function handleStart() {
   console.log('start');
+}
+
+function handleStop() {
+  console.log('stop');
 }
 
 export { printSingleTask };

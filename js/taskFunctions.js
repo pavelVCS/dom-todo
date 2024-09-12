@@ -1,6 +1,21 @@
 import { printSingleTask } from './printSingleTask.js';
 
-const tasks = ['Buy milk', 'Eat dinner', 'Study JS'];
+const firstTask = {
+  title: 'Buy groceries',
+  status: 'created', // started, completed, created
+};
+
+const secondTask = {
+  title: 'Clean the house',
+  status: 'started',
+};
+
+const thirdTask = {
+  title: 'Walk the dog',
+  status: 'completed',
+};
+
+const tasks = [firstTask, secondTask, thirdTask];
 
 function printAllTasks() {
   document.getElementById('tasksList').innerHTML = '';
@@ -19,7 +34,10 @@ function createNewTask() {
     return;
   }
 
-  tasks.push(newTask);
+  tasks.push({
+    title: newTask,
+    status: 'created',
+  });
   document.getElementById('newTaskInput').value = '';
 }
 
