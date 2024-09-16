@@ -2,7 +2,7 @@ import { printSingleTask } from './printSingleTask.js';
 
 const firstTask = {
   title: 'Buy groceries',
-  status: 'created', // started, completed, created
+  status: 'created', // created, started, completed
 };
 
 const secondTask = {
