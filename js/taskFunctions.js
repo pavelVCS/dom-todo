@@ -15,10 +15,16 @@ const thirdTask = {
   status: 'completed',
 };
 
-const tasks = [firstTask, secondTask, thirdTask];
+const tasks = [];
 
 function printAllTasks() {
-  document.getElementById('tasksList').innerHTML = '';
+  const tasksList = document.getElementById('tasksList');
+  tasksList.innerHTML = '';
+
+  if (!tasks.length) {
+    tasksList.textContent = 'There are no tasks created yet :)';
+    return;
+  }
 
   tasks.forEach((task, ind) => {
     printSingleTask(task, ind, tasks, printAllTasks);

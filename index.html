@@ -12,7 +12,14 @@
     <input id="newTaskInput" type="text" />
     <button id="createButton">create</button>
 
-    <h6>Your tasks:</h6>
+    <h4 class="subtitle">Your tasks:</h4>
+    <label for="filter">Filter by status:</label>
+    <select id="filter">
+      <option value="all">All</option>
+      <option value="created">Created</option>
+      <option value="started">Started</option>
+      <option value="completed">Completed</option>
+    </select>
     <ul id="tasksList"></ul>
 
     <script type="module" src="./js/main.js"></script>
