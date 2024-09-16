@@ -1,4 +1,5 @@
 import { printSingleTask } from './printSingleTask.js';
+import { filterStatus } from './main.js';
 
 const firstTask = {
   title: 'Buy groceries',
@@ -15,9 +16,26 @@ const thirdTask = {
   status: 'completed',
 };
 
-const tasks = [];
+const tasks = [
+  firstTask,
+  secondTask,
+  thirdTask,
+  {
+    title: 'Do homework',
+    status: 'created',
+  },
+  {
+    title: 'Go to the gym',
+    status: 'started',
+  },
+  {
+    title: 'Read a book',
+    status: 'completed',
+  },
+];
 
 function printAllTasks() {
+  console.log('printAllTasks', filterStatus);
   const tasksList = document.getElementById('tasksList');
   tasksList.innerHTML = '';
 
@@ -26,9 +44,15 @@ function printAllTasks() {
     return;
   }
 
-  tasks.forEach((task, ind) => {
-    printSingleTask(task, ind, tasks, printAllTasks);
-  });
+  tasks
+    .filter((singleTask) => {
+      if (filterStatus === 'all' || !filterStatus) return true;
+
+      return singleTask.status === filterStatus;
+    })
+    .forEach((task, ind) => {
+      printSingleTask(task, ind, tasks, printAllTasks);
+    });
 }
 
 function createNewTask() {
