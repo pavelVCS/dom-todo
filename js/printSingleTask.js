@@ -20,11 +20,13 @@ function printSingleTask(task, ind, tasks, printAllTasks) {
 
   // add event listeners
   statusButton.addEventListener('click', () => {
-    handleStatusChange(task, ind, tasks, printAllTasks);
+    handleStatusChange(task, ind, tasks);
+    printAllTasks();
   });
 
   deleteButton.addEventListener('click', () => {
-    handleDelete(ind, tasks, printAllTasks);
+    handleDelete(ind, tasks);
+    printAllTasks();
   });
 
   if (task.status !== 'completed') {
@@ -36,15 +38,13 @@ function printSingleTask(task, ind, tasks, printAllTasks) {
 }
 
 // buttons functions
-function handleStatusChange(task, ind, tasks, printAllTasks) {
+function handleStatusChange(task, ind, tasks) {
   const newTask = { ...task, status: getTaskNextStatus(task.status) };
   tasks.splice(ind, 1, newTask);
-  printAllTasks();
 }
 
-function handleDelete(ind, tasks, printAllTasks) {
+function handleDelete(ind, tasks) {
   tasks.splice(ind, 1);
-  printAllTasks();
 }
 
 export { printSingleTask };
