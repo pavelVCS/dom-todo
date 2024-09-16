@@ -18,6 +18,14 @@ ul {
   background-color: #fff;
 }
 
+.task--started {
+  background-color: #f7f7d1;
+}
+
+.task--completed {
+  background-color: #d1f7d5;
+}
+
 .buttonsContainer {
   display: flex;
   gap: 0.5rem;

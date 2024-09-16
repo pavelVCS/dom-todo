@@ -16,6 +16,14 @@ function printSingleTask(task, ind, tasks, printAllTasks) {
 
   // add styles
   taskLi.classList.add('task');
+  if (task.status === 'started') {
+    taskLi.classList.add('task--started');
+  }
+
+  if (task.status === 'completed') {
+    taskLi.classList.add('task--completed');
+  }
+
   buttonsContainer.classList.add('buttonsContainer');
 
   // add event listeners
