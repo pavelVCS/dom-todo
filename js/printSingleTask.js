@@ -2,8 +2,9 @@ import {
   getStatusButtonLabel,
   getTaskNextStatus,
 } from './helpers/statusButtonHelpers.js';
+import { data } from './data.js';
 
-function printSingleTask(task, ind, tasks, printAllTasks) {
+function printSingleTask(task, printAllTasks) {
   const taskLi = document.createElement('li');
   const buttonsContainer = document.createElement('div');
   const statusButton = document.createElement('button');
@@ -28,12 +29,12 @@ function printSingleTask(task, ind, tasks, printAllTasks) {
 
   // add event listeners
   statusButton.addEventListener('click', () => {
-    handleStatusChange(task, ind, tasks);
+    data.changeTaskStatus(task.id, getTaskNextStatus(task.status));
     printAllTasks();
   });
 
   deleteButton.addEventListener('click', () => {
-    handleDelete(ind, tasks);
+    data.deleteTask(task.id);
     printAllTasks();
   });
 
@@ -43,16 +44,6 @@ function printSingleTask(task, ind, tasks, printAllTasks) {
   buttonsContainer.appendChild(deleteButton);
   taskLi.appendChild(buttonsContainer);
   document.getElementById('tasksList').appendChild(taskLi);
-}
-
-// buttons functions
-function handleStatusChange(task, ind, tasks) {
-  const newTask = { ...task, status: getTaskNextStatus(task.status) };
-  tasks.splice(ind, 1, newTask);
-}
-
-function handleDelete(ind, tasks) {
-  tasks.splice(ind, 1);
 }
 
 export { printSingleTask };

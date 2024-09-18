@@ -1,57 +1,24 @@
 import { printSingleTask } from './printSingleTask.js';
 import { filterStatus } from './main.js';
-
-const firstTask = {
-  title: 'Buy groceries',
-  status: 'created', // created, started, completed
-};
-
-const secondTask = {
-  title: 'Clean the house',
-  status: 'started',
-};
-
-const thirdTask = {
-  title: 'Walk the dog',
-  status: 'completed',
-};
-
-const tasks = [
-  firstTask,
-  secondTask,
-  thirdTask,
-  {
-    title: 'Do homework',
-    status: 'created',
-  },
-  {
-    title: 'Go to the gym',
-    status: 'started',
-  },
-  {
-    title: 'Read a book',
-    status: 'completed',
-  },
-];
+import { data } from './data.js';
 
 function printAllTasks() {
-  console.log('printAllTasks', filterStatus);
   const tasksList = document.getElementById('tasksList');
   tasksList.innerHTML = '';
 
-  if (!tasks.length) {
+  if (!data.tasks.length) {
     tasksList.textContent = 'There are no tasks created yet :)';
     return;
   }
 
-  tasks
+  data.tasks
     .filter((singleTask) => {
       if (filterStatus === 'all' || !filterStatus) return true;
 
       return singleTask.status === filterStatus;
     })
-    .forEach((task, ind) => {
-      printSingleTask(task, ind, tasks, printAllTasks);
+    .forEach((task) => {
+      printSingleTask(task, printAllTasks);
     });
 }
 
@@ -64,7 +31,8 @@ function createNewTask() {
     return;
   }
 
-  tasks.push({
+  data.tasks.push({
+    id: crypto.randomUUID(),
     title: newTask,
     status: 'created',
   });
