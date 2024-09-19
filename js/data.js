@@ -32,12 +32,23 @@ const mockData = [
 ];
 
 export const data = {
-  tasks: [...mockData],
+  tasks: [],
+  getTasks: function () {
+    const response = JSON.parse(localStorage.getItem('tasks'));
+
+    if (response && Array.isArray(response)) {
+      this.tasks = response;
+    }
+  },
   setTasks: function (newTasks) {
-    this.tasks = newTasks;
+    if (newTasks) {
+      this.tasks = newTasks;
+    }
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   },
   deleteTask: function (id) {
     this.tasks = this.tasks.filter((task) => task.id !== id);
+    this.setTasks();
   },
   changeTaskStatus: function (id, nextStatus) {
     this.tasks = this.tasks.map((task) => {
@@ -47,6 +58,19 @@ export const data = {
 
       return task;
     });
+    this.setTasks();
   },
-  createTask: function (title) {},
+  createTask: function (newTitle) {
+    this.tasks = [
+      ...this.tasks,
+      {
+        id: crypto.randomUUID(),
+        title: newTitle,
+        status: 'created',
+      },
+    ];
+    this.setTasks();
+  },
 };
+
+data.getTasks();

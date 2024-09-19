@@ -31,11 +31,7 @@ function createNewTask() {
     return;
   }
 
-  data.tasks.push({
-    id: crypto.randomUUID(),
-    title: newTask,
-    status: 'created',
-  });
+  data.createTask(newTask);
   document.getElementById('newTaskInput').value = '';
 }
 
