@@ -20,3 +20,16 @@ document.getElementById('filterByStatus').addEventListener('change', () => {
 });
 
 printAllTasks();
+
+fetch('https://jsonplaceholder.typicode.com/users/2')
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    const user = document.getElementById('user');
+    user.textContent = data.name[0];
+    user.classList.add('userBubble');
+  })
+  .catch((error) => {
+    console.log(error);
+  });
